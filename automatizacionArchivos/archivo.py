@@ -40,3 +40,26 @@ for archivo in archivos:
 os.rmdir(path2)
 # Renombra archivo 
 os.rename("archivo.txt")
+
+import os
+
+#Separar el nombre del archivo y la extension
+def separar_nombre_y_extension(archivo):
+    nombre, extension = os.path.splitext(archivo)
+    return nombre, extension
+
+# Buscar archivos.txt en un directorio y devolver una lista de tuplas (nombre, extensión)
+def buscar_archivos_txt(directorio):
+    archivos_txt = []
+    for archivo in os.listdir(directorio):
+        if archivo.endswith('.txt'):
+            nombre, extension = separar_nombre_y_extension(archivo)
+            archivos_txt.append((nombre, extension))
+    return archivos_txt
+
+# Ejemplo de uso
+directorio = '/ruta/a/tu/carpeta'  # Reemplaza esto con la ruta de tu carpeta
+archivos_txt = buscar_archivos_txt(directorio)
+
+for nombre, extension in archivos_txt:
+    print(f"Nombre: {nombre}, Extensión: {extension}")
